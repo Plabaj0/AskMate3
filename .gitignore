@@ -1,0 +1,13 @@
+.idea/
+.vscode/
+pycache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+docs/_build/
+dist/
+venv/
+static/images
+sample_data
+.venv
