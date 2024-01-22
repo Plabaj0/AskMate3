@@ -1,0 +1,103 @@
+body {
+    font-family: Bradley Hand, cursive;
+}
+a{
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+}
+.navbar {
+    background-color: #cec0c0;
+    color: #020000;
+    padding: 10px;
+    white-space: nowrap;
+}
+
+.ask_mate {
+    font-size: xx-large;
+    text-align: center;
+    white-space: nowrap;
+    display: inline-block;
+    width: 85%;
+}
+
+.log_in{
+    text-align: right;
+    display: inline-block;
+}
+
+a.log_in {
+    color: #252a2a;
+}
+
+.main_nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #af9d9d;
+}
+
+.main_nav li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    text-align: center;
+}
+
+.main_nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.main_nav li a:hover {
+    background-color: #111;
+}
+
+.main_nav li:last-child {
+    border-right: none;
+}
+
+.main_nav_container {
+    display: flex;
+    justify-content: center;
+    background-color: #af9d9d;
+}
+
+footer {
+    text-align: center;
+    padding: 3px;
+    background-color: #af9d9d;
+    color: #504b4b;
+}
+
+.box1 {
+  background-color: #020202;
+  color: #ffffff;
+  opacity: .8;
+}
+
+.background{
+    background-image: url("background.webp");
+    text-align: center
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+}
+
+table {
+    border-collapse: collapse;
+    width: 85%;
+    margin: auto;
+}
+img {
+    width: 240px;
+    height: 140px;
+}

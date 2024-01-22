@@ -1,0 +1,90 @@
+{% extends 'home.html' %}
+{% block body %}
+    <div class="background">
+        <div class="box box1">
+                <h1>Question{% if tag_name == None %}
+                    <a href='{{ url_for('add_tag', question_id=question['id']) }}'>add tag</a>
+                {% else %}
+                    <span style="font-size: small">{{ tag_name['name'] }}</span>
+                {% endif %}</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Submission Time</th>
+        <th>Vote Number</th>
+        <th>Title</th>
+        <th>Message</th>
+        <th>Image</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ question['id'] }}</td>
+        <td>{{ question['submission_time'] }}</td>
+        <td>{{ question['vote_number'] }}</td>
+        <td>{{ question['title'] }}</td>
+        <td>{{ question['message'] }}</td>
+        <td>{% if question['image'] %}
+                        <img src="{{ url_for('static', filename="images/" + question['image']) }}"
+                             alt="Question Image">
+                    {% else %}
+                        No image available
+                    {% endif %}</td>
+       <td><a href="{{ url_for('edit_question', question_id=question['id']) }}">Edit</a>
+        <a href="{{ url_for('delete_question_answers_and_comments', question_id=question['id']) }}">Delete</a>
+    </td>
+    </tr>
+    </tbody>
+</table>
+<td><a href="{{ url_for('upvote', question_id=question_id) }}">Upvote</a></td>
+                <td><a href="{{ url_for('downvote', question_id=question_id) }}">Downvote</a></td>
+<h1>Answers</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Submission Time</th>
+        <th>Vote Number</th>
+        <th>Message</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for answer in answers %}
+    <tr>
+        <td>{{ answer['id'] }}</td>
+        <td>{{ answer['submission_time'] }}</td>
+        <td>{{ answer['vote_number'] }}</td>
+        <td>{{ answer['message'] }}</td>
+        <td><a href="{{ url_for('edit_answer', answer_id=answer['id']) }}">Edit</a>
+            <a href="{{ url_for('delete_answer_and_comments', answer_id=answer['id']) }}">Delete</a>
+    </td>
+    </tr>
+            <tr>
+        <td colspan="7">Comments for Answer ID: {{ answer['id'] }}</td>
+    </tr>
+            {% for comment in filtered_comments[answer['id']] %}
+       <tr>
+                    <td colspan="5">{{ comment['message'] }}</td>
+                    <td><a href="{{ url_for('edit_comment', comment_id=comment['id']) }}">Edit</a>
+                        <a href="{{ url_for('delete_comment', comment_id=comment['id']) }}">Delete</a>
+            </td>
+                </tr>
+                {% endfor %}
+
+
+              
+            <tr>
+        <td colspan="6"><a href="{{ url_for('add_comment', answer_id=answer['id']) }}">Add Comment</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    <a href="/question/{{ question_id }}/new-comment">Add answer</a>
+             
+        </div>
+    </div>
+{% endblock %}

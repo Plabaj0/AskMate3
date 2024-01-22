@@ -1,0 +1,44 @@
+{% extends 'home.html' %}
+{% block title %}Questions {% endblock %}
+{% block head %}
+    <style>
+        .highlight {
+            background-color: red;
+        }
+    </style>{% endblock %}
+{% block body %}
+    <div class="background">
+        <div class="box box1">
+            <table>
+            <tr>
+                <th><a href="?order_by=id&order_direction={{ 'asc' if order_by == 'id' and order_direction == 'desc' else 'desc' }}">id</a></th>
+                <th><a href="?order_by=submission_time&order_direction={{ 'asc' if order_by == 'submission_time' and order_direction == 'desc' else 'desc' }}">submission_time</a></th>
+                <th><a href="?order_by=view_number&order_direction={{ 'asc' if order_by == 'view_number' and order_direction == 'desc' else 'desc' }}">view_number</a></th>
+                <th><a href="?order_by=vote_number&order_direction={{ 'asc' if order_by == 'vote_number' and order_direction == 'desc' else 'desc' }}">vote_number</a></th>
+                <th><a href="?order_by=title&order_direction={{ 'asc' if order_by == 'title' and order_direction == 'desc' else 'desc' }}">title</a></th>
+                <th><a href="?order_by=message&order_direction={{ 'asc' if order_by == 'message' and order_direction == 'desc' else 'desc' }}">message</a></th>
+                <th>image</th>
+            </tr>
+                {% for row in questions %}
+                    <tr>
+                        <td><a href='{{ url_for('question', question_id=row['id']) }}'>{{ row['id'] }}</a></td>
+                        <td>{{ row['submission_time'] }}</td>
+                        <td>{{ row['view_number'] }}</td>
+                        <td>{{ row['vote_number'] }}</td>
+                        <td>{{ row['title'] }}</td>
+                        <td>
+                        {% for word in row['message'].split() %}
+                            {% if word == sentence %}
+                                <span class="highlight">{{ word }}</span>
+                            {% else %}
+                                {{ word }}
+                            {% endif %}
+                        {% endfor %}
+                        </td>
+                        <td>{{ row['image'] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

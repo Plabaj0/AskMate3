@@ -1,0 +1,15 @@
+{% extends 'home.html' %}
+{% block body %}
+    <div class="background">
+        <div class="box box1">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <label for="title">Title:</label>
+                <textarea id="title" name="title" rows="2" cols="15" required></textarea><br>
+                <label for="question">Question:</label>
+                <textarea id="question" name="question" rows="4" cols="50" required></textarea><br>
+                 <input type="file" name="image">
+                <input type="submit" value="ADD">
+            </form>
+        </div>
+    </div>
+{% endblock %}

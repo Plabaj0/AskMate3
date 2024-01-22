@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question Details</title>
+</head>
+<body>
+<h1>Question</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Submission Time</th>
+        <th>Vote Number</th>
+        <th>Title</th>
+        <th>Message</th>
+        <th>Image</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ question['id'] }}</td>
+        <td>{{ question['submission_time'] }}</td>
+        <td>{{ question['vote_number'] }}</td>
+        <td>{{ question['title'] }}</td>
+        <td>{{ question['message'] }}</td>
+        <td>{{ question['image'] }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<<<<<<< HEAD
+{% block body %}
+    <table>
+        <tr>
+            <th>id</th>
+            <th>submission_time</th>
+            <th>vote_number</th>
+            <th>title</th>
+            <th>message</th>
+            <th>image</th>
+        </tr>
+        <tr>
+            <td>{{ question['id'] }}</td>
+            <td>{{ question['submission_time'] }}</td>
+            <td>{{ question['vote_number'] }}</td>
+            <td>{{ question['title'] }}</td>
+            <td>{{ question['message'] }}</td>
+            <td>{% if question['image'] %}
+                        <img src="{{ url_for('static', filename="images/" + question['image']) }}"
+                             alt="Question Image">
+                    {% else %}
+                        No image available
+                    {% endif %}</td>
+        </tr>
+        <form action="" method="POST">
+                <td><a href="{{ url_for('upvote', question_id=question_id) }}">Upvote</a></td>
+                <td><a href="{{ url_for('downvote', question_id=question_id) }}">Downvote</a></td>
+            </form>
+        <tr>
+            <th>id</th>
+            <th>submission_time</th>
+            <th>vote_number</th>
+            <th>question_id</th>
+            <th>message</th>
+            <th>image</th>
+            <th>action</th>
+        </tr>
+        {% for row in answer_id %}
+            <tr>
+                <td>{{ row['id'] }}</td>
+                <td>{{ row['submission_time'] }}</td>
+                <td>{{ row['vote_number'] }}</td>
+                <td>{{ row['question_id'] }}</td>
+                <td>{{ row['message'] }}</td>
+                <td>
+                    {% if row['image'] %}
+                        <img src="{{ url_for('static', filename="images/" + row['image']) }}"
+                             alt="Question Image">
+                    {% else %}
+                        No image available
+                    {% endif %}
+                </td>
+                <td><a href="{{ url_for('edit_answer', answer_id=row['id']) }}">Edit</a></td>
+            </tr>
+
+            {% for comment in comments[row['id']] %}
+                <tr>
+                    <p>{{ comment['message'] }}</p>
+                </tr>
+            {% endfor %}
+            <a href="{{ url_for('add_comment', answer_id=row['id']) }}">add comment</a>
+        {% endfor %}
+=======
+    {% if tag_name == None %}
+        <br>
+        <a href='{{ url_for('add_tag', question_id=question['id']) }}'>add tag</a>
+        <br>
+    {% else %}
+        <br>
+        <span style="font-size: x-small">{{ tag_name['name'] }}</span>
+        <br>
+    {% endif %}
+
+<h1>Answers</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Submission Time</th>
+        <th>Vote Number</th>
+        <th>Message</th>
+        <th>Image</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for answer in answers %}
+    <tr>
+        <td>{{ answer['id'] }}</td>
+        <td>{{ answer['submission_time'] }}</td>
+        <td>{{ answer['vote_number'] }}</td>
+        <td>{{ answer['message'] }}</td>
+        <td>{{ answer['image'] }}</td>
+        <td><a href="{{ url_for('edit_answer', answer_id=answer['id']) }}">Edit</a>
+            <a href="{{ url_for('delete_answer', answer_id=answer['id']) }}">Delete</a>
+    </td>
+    </tr>
+            <tr>
+        <td colspan="7">Comments for Answer ID: {{ answer['id'] }}</td>
+    </tr>
+    <!-- Display comments for each answer -->
+            {% for comment in filtered_comments[answer['id']] %}
+
+    <tr>
+        <td colspan="5">{{ comment['message'] }}</td>
+        <td><a href="{{ url_for('edit_comment', comment_id=comment['id']) }}">Edit</a>
+            <a href="{{ url_for('delete_comment', comment_id=comment['id']) }}">Delete</a>
+</td>
+    </tr>
+    {% endfor %}
+>>>>>>> master
+
+            <tr>
+        <td colspan="5"><a href="{{ url_for('add_comment', answer_id=answer['id']) }}">Add Comment</a></td>
+        <td></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    <a href="/question/{{ question_id }}/new-comment">Add answer</a>
+<<<<<<< HEAD
+{% endblock %}
+=======
+
+</body>
+</html>
+>>>>>>> master

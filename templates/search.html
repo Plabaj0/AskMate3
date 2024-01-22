@@ -1,0 +1,23 @@
+{% extends 'home.html' %}
+{% block title %}Search{% endblock %}
+{% block body %}
+    <div class="background">
+        <div class="box box1">
+            <table>
+                {% for row in results_que %}
+                    <tr>
+                        <th><a href='{{ url_for('question', question_id=row['id']) }}'>{{ row['id'] }}</a><br></th>
+                        <th>{{ row['title'] }}<br></th>
+                        <th>{{ row['message'] }}<br></th>
+                    </tr>
+                {% endfor %}
+                {% for row in results_ans %}
+                    <tr>
+                        <th><a href='{{ url_for('question', question_id=row['id']) }}'>{{ row['id'] }}</a><br></th>
+                        <th>{{ row['message'] }}<br></th>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

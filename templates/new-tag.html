@@ -1,0 +1,19 @@
+{% extends 'home.html' %}
+{% block title %}New Tag {% endblock %}
+
+{% block body %}
+    <div class="background">
+        <div class="box box1">
+            <br>
+            {% for i in tags_name %}
+                {{ i['id'] }}
+                <a href='{{ url_for("question", question_id=question_id) }}?tag_name={{ i['name'] }}'>{{ i['name'] }}</a>
+                <a href="{{ url_for("questions") }}?tag_remove={{ i['id'] }}">x</a><br>
+            {% endfor %}
+            <form action="" method="POST">
+                <input type="text" id="tag" name="tag" placeholder="tag name">
+                <button type="submit">submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

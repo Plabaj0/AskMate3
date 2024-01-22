@@ -1,0 +1,15 @@
+{% extends 'home.html' %}
+{% block body %}
+    <div class="background">
+        <div class="box box1">
+    <h1>Are you sure you want to delete this element?</h1>
+    <form action="{% if function == 'delete_comment' %}{{ url_for('delete_comment', comment_id=comment_id) }}
+{% elif function == 'delete_answer_and_comments' %}{{ url_for('delete_answer_and_comments', answer_id=answer_id) }}
+{% elif function == 'delete_question_and_answers_and_comments' %}{{ url_for('delete_question_and_answers_and_comments', answer_id=answer_id) }}
+{% endif %}" method="post">
+        <input type="submit" value="Delete">
+        <a href="{{ url_for('question', question_id=question_id) }}">Cancel</a>
+    </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'home.html' %}
+{% block body %}
+    <div class="background">
+        <div class="box box1"
+            {% if question %}
+            <h3>Question:</h3>
+                <p>{{ question['title'] }}</p>
+                <p>{{ question['message'] }}</p>
+                <p>{{ question['image'] }}</p>
+        {% endif %}
+
+    {% if answer %}
+        <h3>Previous Answer:</h3>
+        <p>{{ answer['message'] }}</p>
+    {% endif %}
+
+    <form method="POST">
+        <label for="answer">Edit answer:</label>
+        <textarea name="answer" required>{{ answer['message'] if answer else '' }}</textarea>
+        <input type="submit" value="Submit">
+    </form>
+        </div>
+    </div>
+{% endblock %}

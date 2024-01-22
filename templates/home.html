@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block head %}{% endblock %}
+    <title>{% block title %}Home{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="navbar">
+        <span style="font-size: large">{{ date }}</span>
+    <div class="ask_mate">
+        <center><b>AskMate</b></center>
+    </div>
+    <div class="log_in">
+        <a href="/login">login</a>
+        /
+        <a href="/register">register</a>
+    </div>
+</div>
+<div class="main_nav_container">
+    <ul class="main_nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/questions">Questions</a></li>
+        <li><a href="/">about</a></li>
+        <li><a href="/questions/add-question">add question</a></li>
+        <li style="float:right"><form action="/search" id="form">
+            <label for="search"></label>
+            <input type="search" id="search" name="q" placeholder="Search...">
+            <label>
+                <input type="checkbox" name="checkbox">
+            </label>
+            <button>Search</button>
+        </form>
+        </li>
+    </ul>
+</div>
+{% block body %}
+    <div class="background">
+        <div class="box box1">
+            <h2>Latest Questions</h2>
+            <ul>
+                {% for question in newest_questions %}
+                    <li>
+                        <a href="{{ url_for('question', question_id=question['id']) }}">
+                            {{ question['title'] }}
+                        </a>
+                        <p>{{ question['message'] }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+            <a href="{{ all_questions_link }}">View All Questions</a>
+        </div>
+    </div>
+            {% endblock %}
+            <footer>
+              <p>Authors: Przemek, Janek, Alicja <br>
+              <a href="">Contact to us</a></p>
+            </footer>
+
+</body>
+</html>
