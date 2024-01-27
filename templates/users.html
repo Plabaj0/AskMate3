@@ -1,0 +1,34 @@
+{% extends 'home.html' %}
+
+{% block body %}
+    <div class="background">
+        <div class="box box1">
+            <h2>User List</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Registration Date</th>
+                    <th>Number of Asked Questions</th>
+                    <th>Number of Answers</th>
+                    <th>Number of Comments</th>
+                    <th>Reputation</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users_data %}
+                    <tr>
+                        <td><a href="{{ url_for('user', user_id=user['id']) }}"
+                               style='color:royalblue'>{{ user['login'] }}</a></td>
+                        <td>{{ user['registration_date'] }}</td>
+                        <td>{{ user['num_questions'] }}</td>
+                        <td>{{ user['num_answers'] }}</td>
+                        <td>{{ user['num_comments'] }}</td>
+                        <td>{{ user['reputation'] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

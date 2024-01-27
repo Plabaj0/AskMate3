@@ -14,9 +14,13 @@
         <center><b>AskMate</b></center>
     </div>
     <div class="log_in">
-        <a href="/login">login</a>
-        /
-        <a href="/register">register</a>
+        {% if session %}
+            {{ name }} <a href='{{ url_for('logout') }}'>log out</a>
+        {% else %}
+            <a href="/login">login</a>
+            /
+            <a href="/register">register</a>
+        {% endif %}
     </div>
 </div>
 <div class="main_nav_container">
@@ -25,6 +29,9 @@
         <li><a href="/questions">Questions</a></li>
         <li><a href="/">about</a></li>
         <li><a href="/questions/add-question">add question</a></li>
+         {% if 'username' in session %}
+            <li><a href="{{ url_for('users') }}">Users</a></li>
+         {% endif %}
         <li style="float:right"><form action="/search" id="form">
             <label for="search"></label>
             <input type="search" id="search" name="q" placeholder="Search...">

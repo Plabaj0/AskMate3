@@ -9,7 +9,7 @@
 {% block body %}
     <div class="background">
         <div class="box box1">
-            <table>
+            <table border="1">
             <tr>
                 <th><a href="?order_by=id&order_direction={{ 'asc' if order_by == 'id' and order_direction == 'desc' else 'desc' }}">id</a></th>
                 <th><a href="?order_by=submission_time&order_direction={{ 'asc' if order_by == 'submission_time' and order_direction == 'desc' else 'desc' }}">submission_time</a></th>

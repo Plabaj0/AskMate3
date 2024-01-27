@@ -71,3 +71,22 @@ def date_now():
     now = datetime.now()
     submission = now.strftime("%d-%m-%y")
     return submission
+
+
+def get_id_user_for_name(username):
+    users = data_manager.get_name()
+    for i in users:
+        if i['login'] == username:
+            return i['id']
+
+
+def delete_image(image_path):
+    full_path = os.path.join('static/images', image_path)
+    try:
+        if os.path.exists(full_path):
+            os.remove(full_path)
+            print("Image deleted successfully")
+        else:
+            print("Image not found")
+    except Exception as e:
+        print(f"An error occurred: {e}")

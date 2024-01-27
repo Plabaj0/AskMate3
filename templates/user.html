@@ -1,0 +1,55 @@
+{% extends 'home.html' %}
+
+
+{% block body %}
+    <div class="background">
+        <div class="box box1">
+            <h1>User Profile</h1>
+            <p>User ID: {{ search_user_id }}</p>
+            <p>Username: {{ search_username }}</p>
+            <p>Registration Date: {{ registration_date }}</p>
+            <p>Number of Asked Questions: {{ questions | length }}</p>
+            <p>Number of Answers: {{ answers | length }}</p>
+            <p>Number of Comments: {{ comments | length }}</p>
+
+            <p>Reputation: {{ reputation }}</p>
+
+            <h2>Questions</h2>
+            <table>
+                {% for question in questions %}
+                    <tr>
+                        <td><a href="{{ url_for('question', question_id=question['id']) }}"
+                               style='color:royalblue'>{{ question['title'] }}</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <h2>Answers</h2>
+            <table>
+                {% for answer in answers %}
+                    <tr>
+                        <td>Answer to: <a href="{{ url_for('question', question_id=answer['question_id']) }}"
+                                          style='color:royalblue'>{{ answer['question_title'] }}</a>
+                            <br>
+                            {{ answer['message'] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <h2>Comments</h2>
+            <table>
+                {% for comment in comments %}
+                    <tr>
+                        <td>Answer to: <a href="{{ url_for('question', question_id=comment['question_id']) }}"
+                                          style='color:royalblue'>{{ comment['question_title'] }}</a>
+                            <br>
+                            Comment on: {{ comment['answer_message'] }}<br>
+                            {{ comment['message'] }}
+
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}
